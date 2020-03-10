@@ -6,7 +6,6 @@
 <mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper">
 
 
-
 <select parameterType="map" id="consultarClientes" resultMap="ClienteResult">
 			select
     
@@ -17,19 +16,19 @@
     c.email,
     c.vetado,
     
-    ir.id ,
-    ir.fechainiciorenta ,
-    ir.fechafinrenta ,
+    ir.id as ir_id,
+    ir.fechainiciorenta as ir_fechainiciorenta,
+    ir.fechafinrenta as ir_fechafinrenta,
     
-    i.id ,
-    i.nombre ,
-    i.descripcion ,
-    i.fechalanzamiento ,
-    i.tarifaxdia ,
-    i.formatorenta ,
-    i.genero ,        
-    ti.id ,
-    ti.descripcion 
+    i.id as i_id,
+    i.nombre as i_nombre,
+    i.descripcion as i_descripcion,
+    i.fechalanzamiento as i_fechalanzamiento,
+    i.tarifaxdia as i_tarifaxdia,
+    i.formatorenta as i_formatorenta,
+    i.genero as i_genero,
+    ti.id as ti_id,
+    ti.descripcion as ti_descripcion 
 
     
     FROM VI_CLIENTES as c 
@@ -45,15 +44,15 @@
 		<result property='direccion' column='direccion'/>  
 		<result property='email' column='email'/>  
 		<result property='vetado' column='vetado'/>
+		<association property="rentados" javaType="ItemRentado"></association>
 		<collection property='rentados' ofType='ItemRentado' columnPrefix='IR_' resultMap='ItemRentadoResult'></collection>
 	</resultMap>
 
 	<resultMap type='ItemRentado' id='ItemRentadoResult'>
 		<id property='id' column='id'/>
 		<result property='fechainiciorenta' column='fechainiciorenta'/>
-		<result property='fechafinrenta' column='fechafinrenta'/>  
-		<association property="CLIENTES_documento" javaType="Cliente"></association>      
-		<association property="ITEMS_id" javaType="Item"></association>
+		<result property='fechafinrenta' column='fechafinrenta'/>       
+		<association property="item" javaType="Item"></association>
 	</resultMap>
 	
 </mapper>
