@@ -72,11 +72,12 @@ public class MyBatisExample {
         ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
         ItemMapper im=sqlss.getMapper(ItemMapper.class);
         Item item = new Item(new TipoItem(5,"Lo mejor de lo mejor"),2133951,"Lab CVDS","Como resolver el lab",new Date(2020,03,10),985674,"Fromato","Programacion");
-        //im.insertarItem(item);
+        im.insertarItem(item);
+        cm.agregarItemRentadoACliente(-33,2,new Date(2098,12,11),new Date(2189,12,30));
         System.out.println(cm.consultarClientes());
         System.out.println(cm.consultarCliente(-33));
         System.out.println(im.consultarItems());
-        System.out.println(im.consultarItem(12021));
+        //System.out.println(im.consultarItem(12021));
         
         
         sqlss.commit();

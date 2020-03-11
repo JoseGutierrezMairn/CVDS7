@@ -69,8 +69,7 @@
 </select>
 
 <insert parameterType="map" id="agregarItemRentadoACliente">
-			insert into VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id, fechainiciorenta , fechafinrenta) VALUES (#{cliid},#{iid},#{feini},#{fefin})
-    
+			insert into VI_ITEMRENTADO (CLIENTES_documento,ITEMS_id, fechainiciorenta , fechafinrenta) VALUES (#{param1},#{param2},#{param3},#{param4})
     
 </insert>
           	
@@ -82,7 +81,7 @@
 		<result property='email' column='email'/>  
 		<result property='vetado' column='vetado'/>
 		<association property="rentados" javaType="ItemRentado"></association>
-		<collection property='rentados' ofType='ItemRentado' columnPrefix='IR_' resultMap='ItemRentadoResult'></collection>
+		<collection property='rentados' ofType='ItemRentado'  columnPrefix='IR_' resultMap='ItemRentadoResult'></collection>
 	</resultMap>
 
 	<resultMap type='ItemRentado' id='ItemRentadoResult'>
