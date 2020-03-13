@@ -40,5 +40,5 @@
 		<result property='genero' column='genero'/>
 		<association property="tipo" javaType="TipoItem"></association>
 	</resultMap>
-    
+
 </mapper>
