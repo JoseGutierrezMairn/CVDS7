@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
+
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -71,13 +73,13 @@ public class MyBatisExample {
         SqlSession sqlss = sessionfact.openSession();
         ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
         ItemMapper im=sqlss.getMapper(ItemMapper.class);
-        Item item = new Item(new TipoItem(5,"Lo mejor de lo mejor"),2133951,"Lab CVDS","Como resolver el lab",new Date(2020,03,10),985674,"Fromato","Programacion");
-        im.insertarItem(item);
+        Item item = new Item(new TipoItem(3,"Lo mejor de lo mejor"),2133951,"Lab CVDS","Como resolver el lab",new Date(2020,03,10),985674,"Fromato","Programacion");
+        //im.insertarItem(item);
         cm.agregarItemRentadoACliente(-33,2,new Date(2098,12,11),new Date(2189,12,30));
         System.out.println(cm.consultarClientes());
         System.out.println(cm.consultarCliente(-33));
         System.out.println(im.consultarItems());
-        //System.out.println(im.consultarItem(12021));
+        System.out.println(im.consultarItem(2133951));
         
         
         sqlss.commit();
