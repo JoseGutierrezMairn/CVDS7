@@ -10,6 +10,8 @@ import com.google.inject.Injector;
 
 import edu.eci.cvds.samples.services.ServiciosAlquiler;
 import edu.eci.cvds.samples.services.impl.ServiciosAlquilerItemsStub;
+import edu.eci.cvds.sampleprj.dao.*;
+import edu.eci.cvds.sampleprj.dao.mybatis.*;
 
 public class GuiceContextListener implements ServletContextListener {
 
@@ -27,6 +29,10 @@ public class GuiceContextListener implements ServletContextListener {
                 setClassPathResource("mybatis-config.xml");
 
                 // TODO Add service class associated to Stub implementation
+
+                bind(ClienteDAO.class).to(MyBATISClienteDAO.class);
+                bind(ItemDAO.class).to(MyBATISItemDAO.class);
+                bind(TipoItemDAO.class).to(MyBATISTipoItemDAO.class);
                 bind(ServiciosAlquiler.class).to(ServiciosAlquilerItemsStub.class);
             }
         });

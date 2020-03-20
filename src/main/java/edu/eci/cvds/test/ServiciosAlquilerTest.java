@@ -55,14 +55,14 @@ public class ServiciosAlquilerTest {
     public void setUp() {
     }
     
-    /*@Test
+    @Test
     public void emptyDB() {
     	try {
     		Assert.assertTrue(serviciosAlquiler.consultarClientes().size()==0);
     	} catch(Exception e) {
     		Assert.assertTrue(false);  
     	}
-    }*/
+    }
     
     @Test
     public void consultarcliente() {
