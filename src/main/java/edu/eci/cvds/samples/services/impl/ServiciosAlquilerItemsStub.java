@@ -17,6 +17,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.mybatis.guice.transactional.Transactional;
+
 public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
 
    private static final int MULTA_DIARIA=5000;
@@ -35,7 +37,7 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
        itemsrentados = new HashMap<>();
        tipositems = new HashMap<>();
        mapaPrestamosPorIdCliente=new HashMap<>();
-       //poblar();
+       poblar();
    }
 
    @Override
@@ -58,6 +60,7 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
+   @Transactional
    public void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler {
        if (!clientes.containsKey(p.getDocumento())) {
            clientes.put(p.getDocumento(), p);
@@ -67,6 +70,7 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
+   @Transactional
    public void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler {
        if(clientes.containsKey(docu)){
            Cliente c=clientes.get(docu);
@@ -93,6 +97,7 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
+   @Transactional
    public void registrarItem(Item i) throws ExcepcionServiciosAlquiler {
        if (!itemsDisponibles.containsKey(i.getId())) {
            itemsDisponibles.put(i.getId(), i);
@@ -102,6 +107,7 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
+   @Transactional
    public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler {
        if (!itemsDisponibles.containsKey(id)) {
            Item c = itemsDisponibles.get(id);
@@ -128,6 +134,7 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
    }
 
    @Override
+   @Transactional
    public void registrarAlquilerCliente(Date date,long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
 
        LocalDate ld=date.toLocalDate();

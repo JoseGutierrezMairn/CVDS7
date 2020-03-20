@@ -16,6 +16,8 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
+import org.mybatis.guice.transactional.Transactional;
+
 @Singleton
 public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
@@ -71,8 +73,9 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    public List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler {
        throw new UnsupportedOperationException("Not supported yet.");
    }
-
+   
    @Override
+   @Transactional
    public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
 	   try {
 		   Calendar calendar=Calendar.getInstance();
@@ -85,6 +88,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
    }
 
    @Override
+   @Transactional
    public void registrarCliente(Cliente c) throws ExcepcionServiciosAlquiler {
 	   try {
            clienteDAO.save(c);
